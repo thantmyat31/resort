@@ -1,0 +1,42 @@
+.container {
+    width: 25%;
+}
+
+.service {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    margin:0 20px;
+}
+
+.icon {
+    font-size:35px;
+    color:#A08E6E;
+}
+
+.title {
+    font-size:14px;
+    margin:15px 0;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
+.description {
+    font-size:12px;
+    word-spacing: 2px;
+}
+
+@media screen and (max-width:850px) {
+    .container {
+        width:50%;
+        padding-bottom:20px;
+    }
+}
+
+@media screen and (max-width:560px) {
+    .container {
+        width:100%;
+    }
+}

@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background:#ffffff;
+}
+
+.container h2 {
+    font-size:30px;
+}
+
+.ruler {
+    width:70px;
+    height:5px;
+    background:#A08E6E;
+    margin-top:20px;
+}
+
+.wrapper {
+    display:flex;
+    flex-direction: row;
+    padding:40px;
+    flex-wrap: wrap;
+    max-width:1450px;
+}
+
+@media screen and (max-width:770px) {
+    .container {
+        padding-left:0;
+        padding-right:0;
+    }
+    .wrapper {
+        padding-left:0;
+        padding-right:0;
+        justify-content: center;
+    }
+}

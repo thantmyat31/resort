@@ -1,0 +1,14 @@
+.button {
+    padding:5px 20px;
+    background:#A08E6E;
+    border:none;
+    margin-top:20px;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    transition-duration:0.5s;
+    transition-timing-function: ease-in-out;
+    background:#ffffff;
+    padding:5px 30px;
+}
