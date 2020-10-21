@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size:30px;
+}
+
+.ruler {
+    width:70px;
+    height:5px;
+    background:#A08E6E;
+    margin-top:20px;
+}

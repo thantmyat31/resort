@@ -1,16 +1,18 @@
 import React from 'react';
 import MainVisual from '../../components/layout/MainVisual/MainVisual';
+import RoomContainer from '../../components/RoomContainer/RoomContainer';
 
 const RoomsPage = () => {
     return ( 
-        <div>
+        <React.Fragment>
             <MainVisual 
                 isNotHome={true}
                 title="Our Rooms"
                 path="/"
                 buttonName="Return Home"
             />
-        </div>
+            <RoomContainer />
+        </React.Fragment>
      );
 }
  

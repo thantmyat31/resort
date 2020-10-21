@@ -4,10 +4,11 @@ import Button from './../Button/Button';
 import styles from './Room.module.css';
 import defaultImage from './../../assets/image/room-1.jpeg';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
-const Room = ({ room }) => {
+const Room = ({ room, style }) => {
 	return (
-		<div className={styles.container}>
+		<div className={cx(styles.container, style && style)}>
 			<div className={styles.column}>
 				<div className={styles.wrapper}>
 					<img src={room.images[0] || defaultImage} alt="Room" />

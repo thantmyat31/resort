@@ -1,0 +1,26 @@
+.roomsList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    padding:40px;
+}
+
+.roomsList .room {
+    width:25%;
+    margin-top:20px;
+    margin-bottom:0;
+}
+
+.emptySearch {
+    text-align: center;
+    padding:50px 20px;
+}
+
+@media screen and (max-width:980px) {
+    .roomsList .room { width:50% }
+}
+
+@media screen and (max-width:580px) {
+    .roomsList { justify-content: center;padding:40px 0; }
+    .roomsList .room { width:100% }
+}

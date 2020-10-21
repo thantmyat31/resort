@@ -1,0 +1,103 @@
+.singleRoom {
+    padding:40px;
+    max-width:1450px;
+}
+
+.singleRoomImages {
+    display: flex;
+    flex:1;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+.singleRoomImages .singleRoomImageWrapper {
+    width:33.333%;
+    margin-bottom:20px;
+}
+
+.singleRoomImages .singleRoomImageWrapper:last-of-type {
+    margin-bottom:0;
+}
+
+.singleRoomImages .singleRoomImageWrapper .container {
+    margin:0 20px;
+}
+
+.singleRoomImages .singleRoomImageWrapper img {
+    width:100%;
+}
+
+.singleRoomInfo {
+    display:flex;
+    flex-direction: row;
+    padding:0 20px;
+}
+
+.singleRoomInfo .description,
+.singleRoomInfo .info { width:60%;padding-top:20px; }
+
+.singleRoomInfo .info { width:40%;padding-left:50px }
+
+.singleRoomInfo .description h3,
+.singleRoomInfo .info h3 {
+    text-transform:capitalize;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.singleRoomInfo .description p { 
+    font-size:14px;
+    line-height:18px; 
+    padding-top:15px;
+}
+
+.singleRoomInfo .info h6 {
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:capitalize;
+    padding-top:15px;
+}
+
+.singleRoomExtras { padding:40px 20px 0; }
+
+.singleRoomExtras h6 { 
+    font-size:14px;
+    letter-spacing: 2px;
+    text-transform:capitalize; 
+}
+
+.singleRoomExtras .extras {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    font-size:14px;
+    margin-top:15px;
+}
+
+.singleRoomExtras .extras li {
+    width:33.333%;
+    text-indent: 5px;
+    margin-top:15px;
+}
+
+@media screen and (max-width:990px) {
+    .singleRoomExtras .extras li {
+        width:50%;
+    }
+}
+
+@media screen and (max-width:770px) {
+    .singleRoom { padding:40px 15px; }
+    .singleRoomImages .singleRoomImageWrapper { width:50%; }
+    .singleRoomImages .singleRoomImageWrapper .container { margin:0 20px; }
+    .singleRoomInfo { flex-direction: column; }
+    .singleRoomInfo .description,
+    .singleRoomInfo .info { width:100%;padding-left:0; }
+    
+}
+
+@media screen and (max-width:580px) {
+    .singleRoomImages .singleRoomImageWrapper { width:100%; }
+    .singleRoomExtras .extras li { width:100%; }
+}
