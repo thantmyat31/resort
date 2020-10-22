@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import items from './../data/data';
+import Client from './../contentful/contentful';
+
 
 const RoomContext = React.createContext();
 class RoomProvider extends Component {
@@ -18,23 +19,36 @@ class RoomProvider extends Component {
 		maxSize: 0,
 		breakfast: false,
 		pets: false
-	};
+    };
+    
+    getData = async () => {
+        try {
+            const {items} = await Client.getEntries({
+                content_type: 'thantResortRoom',
+                order: 'sys.createdAt'
+            });
+            let rooms = this.formatData(items);
+            let featuredRooms = rooms.filter((room) => room.featured === true);
+            let maxPrice = Math.max(...rooms.map((room) => room.price));
+            let maxSize = Math.max(...rooms.map((room) => room.size));
+            this.setState({
+                rooms,
+                featuredRooms,
+                sortedRooms: rooms,
+                loading: false,
+                price: maxPrice,
+                maxPrice,
+                maxSize
+            });
+
+        } catch (err) {
+            console.log('[getData Error]:', err)
+        }
+    }
 
 	componentDidMount() {
-		let rooms = this.formatData(items);
-		let featuredRooms = rooms.filter((room) => room.featured === true);
-		let maxPrice = Math.max(...rooms.map((room) => room.price));
-		let maxSize = Math.max(...rooms.map((room) => room.size));
-		this.setState({ 
-            rooms, 
-            featuredRooms, 
-            sortedRooms: rooms, 
-            loading: false, 
-            price: maxPrice,
-            maxPrice, 
-            maxSize 
-        });
-	}
+        this.getData();
+    }
 
 	formatData = (items) => {
 		let tempItems = items.map((item) => {
@@ -50,55 +64,55 @@ class RoomProvider extends Component {
 		let tempRooms = [ ...this.state.rooms ];
 		const room = tempRooms.find((room) => room.slug === slug);
 		return room;
-    };
-    
-    handleOnChange = (event) => {
-        let target = event.target;
-        let value = target.type === 'checkbox'? target.checked : target.value;
-        let name = event.target.name;
-        
-        this.setState(
-            {
-                [name]: value
-            }, 
-            this.filterRoom
-        );
-    }
+	};
 
-    filterRoom = () => {
-        let { rooms, type, capacity, price, maxSize, minSize, breakfast, pets } = this.state;
-        let tempRooms = [...rooms];
-        capacity = parseInt(capacity);
-        price = parseInt(price);
+	handleOnChange = (event) => {
+		let target = event.target;
+		let value = target.type === 'checkbox' ? target.checked : target.value;
+		let name = event.target.name;
 
-        // Filter by type 
-        if(type !== 'all') {
-            tempRooms = tempRooms.filter(room => room.type === type);
-        }
+		this.setState(
+			{
+				[name]: value
+			},
+			this.filterRoom
+		);
+	};
 
-        // Filter by capacity 
-        if(capacity > 1) {
-            tempRooms = tempRooms.filter(room => room.capacity >= capacity);
-        }
+	filterRoom = () => {
+		let { rooms, type, capacity, price, maxSize, minSize, breakfast, pets } = this.state;
+		let tempRooms = [ ...rooms ];
+		capacity = parseInt(capacity);
+		price = parseInt(price);
 
-        // Filter by price 
-        tempRooms = tempRooms.filter(room => room.price <= price);
+		// Filter by type
+		if (type !== 'all') {
+			tempRooms = tempRooms.filter((room) => room.type === type);
+		}
 
-        // Filter by size 
-        tempRooms = tempRooms.filter(room => room.size >= minSize && room.size <= maxSize);
+		// Filter by capacity
+		if (capacity > 1) {
+			tempRooms = tempRooms.filter((room) => room.capacity >= capacity);
+		}
 
-        // Fitler by breakfast
-        if(breakfast) {
-            tempRooms = tempRooms.filter(room => room.breakfast === true);
-        }
+		// Filter by price
+		tempRooms = tempRooms.filter((room) => room.price <= price);
 
-        // Fitler by pets
-        if(pets) {
-            tempRooms = tempRooms.filter(room => room.pets === true);
-        }
+		// Filter by size
+		tempRooms = tempRooms.filter((room) => room.size >= minSize && room.size <= maxSize);
 
-        this.setState({sortedRooms: tempRooms});
-    }
+		// Fitler by breakfast
+		if (breakfast) {
+			tempRooms = tempRooms.filter((room) => room.breakfast === true);
+		}
+
+		// Fitler by pets
+		if (pets) {
+			tempRooms = tempRooms.filter((room) => room.pets === true);
+		}
+
+		this.setState({ sortedRooms: tempRooms });
+	};
 
 	render() {
 		return (
